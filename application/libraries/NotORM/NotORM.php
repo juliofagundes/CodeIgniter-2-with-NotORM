@@ -100,7 +100,8 @@ class NotORM extends NotORM_Abstract {
 	{
 	  try{
 	      $ci =& get_instance();
-	       return new PDO("{$ci->db->dbdriver}:dbname={$ci->db->database};host={$ci->db->hostname}",
+	      $driver = ($ci->db->dbdriver === 'postgres') ? 'pgsql' : $ci->db->dbdriver;
+	       return new PDO("{$driver}:dbname={$ci->db->database};host={$ci->db->hostname}",
 							   $ci->db->username,
 							   $ci->db->password);
 							  
